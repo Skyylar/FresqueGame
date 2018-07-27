@@ -806,7 +806,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1215178472}
+      - m_Target: {fileID: 982363870}
         m_MethodName: 
         m_Mode: 1
         m_Arguments:
@@ -895,16 +895,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 982363870}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4467c685456740549cab377562916b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a13f2644c483439ca997fa3b40283c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  background: image_1
-  listTrue:
-  - lance
-  - hache
-  - javelot
-  - tomate
-  - radiateur
+  background: 
+  listTrue: []
   listFalse: []
 --- !u!1 &1215178472
 GameObject:
@@ -948,7 +943,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1215178472}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3235cf5b6197e410b8c430a1f48fac5a, type: 3}
+  m_Script: {fileID: 11500000, guid: ea43581e9d5804743a1ff524bd987a94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1354611333
@@ -1261,7 +1256,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 982363872}
+      - m_Target: {fileID: 1215178474}
         m_MethodName: back_menu
         m_Mode: 1
         m_Arguments:

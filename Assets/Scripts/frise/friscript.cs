@@ -18,7 +18,7 @@ public class friscript : MonoBehaviour {
 	//Start prehistoire
 	public void Start_Prehistoire() {
 		Debug.Log("Vous avez cliqué sur le bouton prehistoire.");
-		SceneManager.LoadScene("prehistoire", LoadSceneMode.Single);
+		SceneManager.LoadScene("FindObject", LoadSceneMode.Single);
 	}
 
 	//Start antiquite
