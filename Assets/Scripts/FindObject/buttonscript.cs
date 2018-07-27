@@ -22,21 +22,16 @@ public class buttonscript : MonoBehaviour {
 		SceneManager.LoadScene("friscene", LoadSceneMode.Single);
 	}
 
-	public void OnClickObject () {
+	public void OnClickObject (Button button) {
 
 		int i;
 
-		gamescript OtherScript = GameObject.Find("gamescript").GetComponent<gamescript>();
-		List<String> ListTrue = OtherScript.listTrue;
-
 		for(i=0;i<5;i++) {
 			GameObject text = GameObject.Find ("ListObject" + i.ToString());
-			if(text.GetComponent<Text>().text == ListTrue[i]) {
-				text.GetComponent<Text>().text = "";
-				GameObject myButton = GameObject.Find("Obj" + i.ToString());
-
-				myButton.GetComponent<Button>().interactable = false;
-				Debug.Log("Bravo vous avez trouvé un mot.");
+			if(button.GetComponent<TextMesh>().text == text.GetComponent<TextMesh>().text) {
+				text.GetComponent<TextMesh>().text = "";
+				button.interactable = false;
+				i = 5;
 			}
 		}
 	}
