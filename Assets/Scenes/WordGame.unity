@@ -428,17 +428,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 871024728}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0368f7ecbf3b8944084c90f07ff87a74, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a94c9ecfbb5d46db842d7d9d35a3bd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   emptyboxPrefab: {fileID: 4965977336932116, guid: 13d8f5ad4c406d445995f6dfbe29f697,
     type: 2}
   letterBox: {fileID: 4820092669805096, guid: f337ceb2a7990d74bbd043a7d23bd92b, type: 2}
-  theWord: imprimerie
-  posXEmpty: -9
-  posXLetter: -8
+  theWord: 
+  posXEmpty: 0
+  posXLetter: 0
   index: 0
-  question: Qu'inventa Gutemberg pour faciliter la copie de livre ?
+  question: 
   onlyOne: {fileID: 1194952784}
 --- !u!4 &871024730
 Transform:
