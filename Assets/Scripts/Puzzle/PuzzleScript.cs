@@ -43,6 +43,20 @@ public class PuzzleScript : MonoBehaviour {
         swap_all_pieces();
     }
 
+    void setEmission(GameObject go, bool value) {
+         Color finalColor = Color.black;
+        if (value == true) {
+            float emission = Mathf.PingPong (Time.time, 1.0f);
+            finalColor = new Color(0.2F, 0.3F, 0.4F, 0.5F) * Mathf.LinearToGammaSpace (emission);
+        } else {
+            float emission = Mathf.PingPong (Time.time, 1.0f);
+            finalColor = Color.black * Mathf.LinearToGammaSpace (emission);
+        }
+        Material m = go.GetComponent<Renderer>().material;
+        m.EnableKeyword ("_EmissionColor");
+        m.SetColor ("_EmissionColor", finalColor);
+    }
+
     void start_desc() {
         GameObject go = GameObject.Find("desc_canvas");
         Image image = go.GetComponent<Image>();
@@ -111,10 +125,12 @@ public class PuzzleScript : MonoBehaviour {
                 GameObject target_1 = getTarget();
                 if (target_1 != null) {
                     piece_pos_1 = target_1;
+                    setEmission(piece_pos_1, true);
                 }
             } else if (piece_pos_2 == null) {
                 GameObject target_2 = getTarget();
                 if (target_2 != null) {
+                    setEmission(piece_pos_1, false);
                     piece_pos_2 = target_2;
                 }
                 swap_piece();
