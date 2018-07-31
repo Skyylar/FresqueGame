@@ -31,28 +31,28 @@ public class ClickOnBox : MonoBehaviour {
     public void Start_Prehistoire()
     {
         Debug.Log("Vous avez cliqué sur le bouton prehistoire.");
-        SceneManager.LoadScene("FindObject", LoadSceneMode.Additive);
+        SceneManager.LoadScene("FindObject", LoadSceneMode.Single);
     }
 
     //Start antiquite
     public void Start_Antiquite()
     {
         Debug.Log("Vous avez cliqué sur le bouton antiquite.");
-        SceneManager.LoadScene("Puzzle", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Puzzle", LoadSceneMode.Single);
     }
 
     //Start moyen-age
     public void Start_MoyenAge()
     {
         Debug.Log("Vous avez cliqué sur le bouton moyen-age.");
-        SceneManager.LoadScene("WordGame", LoadSceneMode.Additive);
+        SceneManager.LoadScene("WordGame", LoadSceneMode.Single);
     }
 
     //Start temps modernes
     public void Start_TempsModernes()
     {
         Debug.Log("Vous avez cliqué sur le bouton temps modernes.");
-        SceneManager.LoadScene("quiz", LoadSceneMode.Additive);
+        SceneManager.LoadScene("quiz", LoadSceneMode.Single);
     }
 
     //Start XIXeme siecle
