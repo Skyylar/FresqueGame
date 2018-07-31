@@ -7,13 +7,13 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 0
     path: 
-    guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
-    path: Assets/Scenes/prehistoire.unity
-    guid: 1baad32433c51492e8d46a1e8b17cc75
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/friscene.unity
     guid: 24a3b274a12a34aee87881f53b87408f
+  - enabled: 1
+    path: Assets/Scenes/FindObject.unity
+    guid: 1baad32433c51492e8d46a1e8b17cc75
   - enabled: 1
     path: Assets/Scenes/Puzzle.unity
     guid: 1964c35bbd2b043c3badeb396f7a05d2

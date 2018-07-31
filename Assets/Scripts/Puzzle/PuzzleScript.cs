@@ -89,21 +89,13 @@ public class PuzzleScript : MonoBehaviour {
     void set_cadre() {
         for (int p = 0; p < 4; p++) {
             for (int x = 0; x < tex.width; x++)
-            {
                 tex.SetPixel(x, p, Color.black);
-            }
             for (int x = 0; x < tex.width; x++)
-            {
                 tex.SetPixel(x, tex.height - p, Color.black);
-            }
             for (int x = 0; x < tex.height; x++)
-            {
                 tex.SetPixel(p, x, Color.black);
-            }
             for (int x = 0; x < tex.height; x++)
-            {
                 tex.SetPixel(tex.width - p, x, Color.black);
-            }
         }
         tex.Apply();
     }

@@ -8,11 +8,11 @@ public class GameMaster : MonoBehaviour {
 
     public Transform emptyboxPrefab;
     public Transform letterBox;
-    public string theWord;
-    public float posXEmpty;
-    public float posXLetter;
+    private string theWord = "imprimerie";
+    private float posXEmpty = -9;
+    private float posXLetter = -8;
     public int index;
-    public string question;
+    private string question = "Qu'inventa Gutemberg pour faciliter la copie de livre ?";
     public Button onlyOne;
 
     private string answer;
