@@ -59,6 +59,7 @@ public class ClickOnBox : MonoBehaviour {
     public void Start_XIXSiecle()
     {
         Debug.Log("Vous avez cliqué sur le bouton XIXeme siecle.");
+        GameManager.VideoName = "Le XIXe siècle - Un peu d'histoire.mp4";
         SceneManager.LoadScene("videoPlayer", LoadSceneMode.Single);
     }
 
@@ -66,6 +67,7 @@ public class ClickOnBox : MonoBehaviour {
     public void Start_XXSiecle()
     {
         Debug.Log("Vous avez cliqué sur le bouton XXeme siecle.");
+        GameManager.VideoName = "Le XXe siècle - Un peu d’histoire.mp4";
         SceneManager.LoadScene("videoPlayer", LoadSceneMode.Single);
     }
 

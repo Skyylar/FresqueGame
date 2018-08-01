@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class VideoPlayer : MonoBehaviour {
 
-    public string nameVideo;
-
 	// Use this for initialization
 	void Start () {
-        get_video(nameVideo);
+        get_video(GameManager.VideoName);
 	}
 	
 	// Update is called once per frame
@@ -22,7 +20,7 @@ public class VideoPlayer : MonoBehaviour {
         var videoPlayer = camera.AddComponent<UnityEngine.Video.VideoPlayer>();
         videoPlayer.playOnAwake = false;
         videoPlayer.renderMode = UnityEngine.Video.VideoRenderMode.CameraNearPlane;
-        videoPlayer.url = "/Users/gyrotak/Documents/ETNA/Project/CodeCamp/FresqueGame/Assets/Resources/video/" + name;
+        videoPlayer.url = "Assets/Resources/video/" + name;
         videoPlayer.Play();
     }
 

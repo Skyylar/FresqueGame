@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour {
+public class GameManager : MonoBehaviour {
+
+    public static string VideoName { get;set; }
 
 	// Use this for initialization
 	void Start () {
