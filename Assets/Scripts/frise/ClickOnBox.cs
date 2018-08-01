@@ -59,14 +59,14 @@ public class ClickOnBox : MonoBehaviour {
     public void Start_XIXSiecle()
     {
         Debug.Log("Vous avez cliqué sur le bouton XIXeme siecle.");
-        //SceneManager.LoadScene("XIX_siecle", LoadSceneMode.Single);
+        SceneManager.LoadScene("videoPlayer", LoadSceneMode.Single);
     }
 
     //Start XXeme siecle
     public void Start_XXSiecle()
     {
         Debug.Log("Vous avez cliqué sur le bouton XXeme siecle.");
-        //SceneManager.LoadScene("XX_siecle", LoadSceneMode.Single);
+        SceneManager.LoadScene("videoPlayer", LoadSceneMode.Single);
     }
 
 }
