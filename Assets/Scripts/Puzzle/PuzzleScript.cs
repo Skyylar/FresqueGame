@@ -65,9 +65,9 @@ public class PuzzleScript : MonoBehaviour {
                 GameObject target_2 = getTarget();
                 if (target_2 != null)
                 {
-                    setEmission(piece_pos_1, false);
                     piece_pos_2 = target_2;
                 }
+                setEmission(piece_pos_1, false);
                 swap_piece();
                 reset_pos();
                 int val = verify_puzzle();
