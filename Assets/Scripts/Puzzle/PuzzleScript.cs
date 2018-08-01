@@ -4,7 +4,10 @@
  using UnityEngine.UI;
 
 public class PuzzleScript : MonoBehaviour {
-    public float TimeG;
+    
+    public static float TimeG;
+    public static bool timerstarted = true;
+
     public Texture2D tex;
     public Material mat;
     private int cols = 5;
@@ -31,7 +34,6 @@ public class PuzzleScript : MonoBehaviour {
 
 
     void Start() {
-        TimeG = Time.deltaTime;
         start_desc();
         reset_pos();
         mat.mainTexture = tex;
@@ -41,17 +43,63 @@ public class PuzzleScript : MonoBehaviour {
         swap_all_pieces();
     }
 
+    void Update()
+    {
+        if (timerstarted == true) 
+        {
+            TimeG += Time.deltaTime;
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (piece_pos_1 == null)
+            {
+                GameObject target_1 = getTarget();
+                if (target_1 != null)
+                {
+                    piece_pos_1 = target_1;
+                    setEmission(piece_pos_1, true);
+                }
+            }
+            else if (piece_pos_2 == null)
+            {
+                GameObject target_2 = getTarget();
+                if (target_2 != null)
+                {
+                    setEmission(piece_pos_1, false);
+                    piece_pos_2 = target_2;
+                }
+                swap_piece();
+                reset_pos();
+                int val = verify_puzzle();
+                if (val == 1)
+                {
+                    timerstarted = false;
+                    desc_enable();
+                    float score = Map(TimeG, 300, 25, 0, 20);
+                }
+            }
+        }
+    }
+
+    private float Map(float x, int in_min,int in_max,int out_min,int out_max) 
+    {
+        return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+    }
+
     /// <summary>
     ///     Ajoute/Supprime un effet lumineux sur une piece de puzzle sélectionné 
     /// </summary>
     /// <param name="go">Go.</param>
     /// <param name="value">If set to <c>true</c> value.</param>
-    void setEmission(GameObject go, bool value) {
-         Color finalColor = Color.black;
-        if (value == true) {
+    void setEmission(GameObject go, bool value) 
+    {
+        Color finalColor = Color.black;
+        if (value == true) 
+        {
             float emission = Mathf.PingPong (Time.time, 1.0f);
             finalColor = new Color(0.2F, 0.3F, 0.4F, 0.5F) * Mathf.LinearToGammaSpace (emission);
-        } else {
+        } else 
+        {
             float emission = Mathf.PingPong (Time.time, 1.0f);
             finalColor = Color.black * Mathf.LinearToGammaSpace (emission);
         }
@@ -64,7 +112,8 @@ public class PuzzleScript : MonoBehaviour {
     ///    Génere la description de la photo du puzzle
     ///    Désactive l'affichage de la description
     /// </summary>
-    void start_desc() {
+    void start_desc() 
+    {
         GameObject go = GameObject.Find("desc_canvas");
         Image image = go.GetComponent<Image>();
         image.enabled = false;
@@ -77,7 +126,8 @@ public class PuzzleScript : MonoBehaviour {
     /// <summary>
     ///     Active l'affiche la description
     /// </summary>
-    void desc_enable() {
+    void desc_enable() 
+    {
         GameObject go1 = GameObject.Find("desc");
         Text text = go1.GetComponent<Text>();
         text.enabled = true;
@@ -90,9 +140,11 @@ public class PuzzleScript : MonoBehaviour {
     /// <summary>
     ///     Récupere les coordonnées du tout le puzzle avant le tri de celle-ci
     /// </summary>
-    void get_coord_before_start() {
+    void get_coord_before_start() 
+    {
         GameObject[] gos = GameObject.FindGameObjectsWithTag("Puzzle_board");
-        foreach (GameObject go in gos) {
+        foreach (GameObject go in gos) 
+        {
             puzzle_coord_v.Add(new CoOrds(go.transform.position.x, go.transform.position.y));
         }
     }
@@ -104,14 +156,18 @@ public class PuzzleScript : MonoBehaviour {
     int verify_puzzle() {
         GameObject[] gos = GameObject.FindGameObjectsWithTag("Puzzle_board");
         int check = 0;
-        for (int i = 0; i < gos.Length; i++) {
-            if (gos[i].transform.position.x == puzzle_coord_v[i].x) {
-                if (gos[i].transform.position.y == puzzle_coord_v[i].y) {
+        for (int i = 0; i < gos.Length; i++) 
+        {
+            if (gos[i].transform.position.x == puzzle_coord_v[i].x) 
+            {
+                if (gos[i].transform.position.y == puzzle_coord_v[i].y) 
+                {
                     check++;
                 }
             }
         }
-        if (check == gos.Length) {
+        if (check == gos.Length) 
+        {
             return 1;
         }
         return 0;
@@ -120,8 +176,10 @@ public class PuzzleScript : MonoBehaviour {
     /// <summary>
     ///     Génere un cadre noir autour de l'image
     /// </summary>
-    void set_cadre() {
-        for (int p = 0; p < 4; p++) {
+    void set_cadre() 
+    {
+        for (int p = 0; p < 4; p++) 
+        {
             for (int x = 0; x < tex.width; x++)
                 tex.SetPixel(x, p, Color.black);
             for (int x = 0; x < tex.width; x++)
@@ -134,34 +192,10 @@ public class PuzzleScript : MonoBehaviour {
         tex.Apply();
     }
 
-    void reset_pos() {
+    void reset_pos() 
+    {
         piece_pos_1 = null;
         piece_pos_2 = null;
-    }
-
-    void Update() {
-        if (Input.GetMouseButtonDown(0)) {
-            if (piece_pos_1 == null) {
-                GameObject target_1 = getTarget();
-                if (target_1 != null) {
-                    piece_pos_1 = target_1;
-                    setEmission(piece_pos_1, true);
-                }
-            } else if (piece_pos_2 == null) {
-                GameObject target_2 = getTarget();
-                if (target_2 != null) {
-                    setEmission(piece_pos_1, false);
-                    piece_pos_2 = target_2;
-                }
-                swap_piece();
-                reset_pos();
-                int val = verify_puzzle();
-                if (val == 1) {
-                    TimeG = Math.Abs(Time.deltaTime - TimeG);
-                    desc_enable();
-                }
-            }
-        }
     }
 
     /// <summary>
@@ -171,10 +205,12 @@ public class PuzzleScript : MonoBehaviour {
     /// <param name="coord">Coordinate.</param>
     /// <param name="a">The alpha component.</param>
     /// <param name="b">The blue component.</param>
-    int getNewCoord(Dictionary<int, CoOrds> coord, int a, int b) {
+    int getNewCoord(Dictionary<int, CoOrds> coord, int a, int b) 
+    {
         foreach (KeyValuePair<int, CoOrds> array in coord)
             {
-                if ((array.Value.x == a && array.Value.y == b)) {
+                if ((array.Value.x == a && array.Value.y == b)) 
+                {
                     return 1;
                 }
             }
@@ -184,16 +220,18 @@ public class PuzzleScript : MonoBehaviour {
     /// <summary>
     ///     Mélange le puzzle
     /// </summary>
-    void swap_all_pieces() {
+    void swap_all_pieces() 
+    {
         int rows = Mathf.RoundToInt(cols * aspect);
-        Dictionary<int, CoOrds> coord =
-            new Dictionary<int, CoOrds>();
+        Dictionary<int, CoOrds> coord = new Dictionary<int, CoOrds>();
         GameObject[] gos = GameObject.FindGameObjectsWithTag("Puzzle_board");
         int i = 0;
-        foreach (GameObject go in gos) {
+        foreach (GameObject go in gos) 
+        {
             int new_row = UnityEngine.Random.Range(-2, rows - 3);
             int new_col = UnityEngine.Random.Range(-2, cols - 3);
-            while (getNewCoord(coord, new_row, new_col) == 1) {
+            while (getNewCoord(coord, new_row, new_col) == 1) 
+            {
                 new_row = UnityEngine.Random.Range(-2, rows - 2);
                 new_col = UnityEngine.Random.Range(-2, cols - 2);
             }
@@ -207,9 +245,11 @@ public class PuzzleScript : MonoBehaviour {
     /// <summary>
     ///     Échange la position entre deux pieces
     /// </summary>
-    void swap_piece() {
+    void swap_piece() 
+    {
         String name_1 = piece_pos_1.name;
-        if (piece_pos_2 != null) {
+        if (piece_pos_2 != null) 
+        {
             String name_2 = piece_pos_2.name;
             String temp = name_1;
 
@@ -227,14 +267,18 @@ public class PuzzleScript : MonoBehaviour {
     ///     Récupere l'objet qui a été sélectionné
     /// </summary>
     /// <returns>The target.</returns>
-    GameObject getTarget() {
+    GameObject getTarget() 
+    {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 100)) {
+        if (Physics.Raycast(ray, out hit, 100)) 
+        {
             GameObject target = hit.collider.gameObject;
-            if (target.tag == "Puzzle_board") {
+            if (target.tag == "Puzzle_board") 
+            {
                 return target;
-            } else {
+            } else 
+            {
                 return null;
             }
         }
@@ -244,7 +288,8 @@ public class PuzzleScript : MonoBehaviour {
     /// <summary>
     ///     Découpe une materiel en plusieurs pieces de puzzle
     /// </summary>
-    void BuildPieces() {
+    void BuildPieces() 
+    {
         int rows = Mathf.RoundToInt(cols * aspect);
         Vector3 offset = Vector3.zero;
         offset.x = -Mathf.RoundToInt ((float)cols / 2.0f - 0.5f);
@@ -254,9 +299,11 @@ public class PuzzleScript : MonoBehaviour {
         float uvHeight = 1.0f / rows;
 
         // Génére les pieces par lignes
-        for (int i = 0; i < rows; i++) {
+        for (int i = 0; i < rows; i++) 
+        {
             // Génére les pieces par colonnes
-            for (int j = 0; j < cols; j++) {
+            for (int j = 0; j < cols; j++) 
+            {
                 GameObject go = GameObject.CreatePrimitive(PrimitiveType.Quad);
                 go.name = "piece_" + i + "_" + j;
                 go.tag = "Puzzle_board";
