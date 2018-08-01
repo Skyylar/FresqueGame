@@ -24,7 +24,11 @@ public class Text4 : MonoBehaviour
 
     void OnMouseDown()
     {
-        TextControl.selectedAnswer = gameObject.name;
-        TextControl.choiceSelected = "y";
+        if (TextControl.isClicked == 0)
+        {
+            TextControl.selectedAnswer = gameObject.name;
+            TextControl.choiceSelected = "y";
+            TextControl.isClicked = 1;
+        }
     }
 }

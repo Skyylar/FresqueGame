@@ -30,6 +30,8 @@ public class TextControl : MonoBehaviour
 
     public static int totalQuestions = 0;
 
+    public static int isClicked = 0;
+
     public int sizeList = questions.Count;
 
     public static int i = 0;

@@ -23,6 +23,7 @@ public class NextButton : MonoBehaviour {
     {
         TextControl.nextActivator = 0;
         TextControl.randQuestion = -1;
+        TextControl.isClicked = 0;
         resultObj.GetComponent<TextMesh>().text = "";
         nextObj.GetComponent<TextMesh>().text = "";
     }

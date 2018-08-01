@@ -7,6 +7,8 @@ public class Text1 : MonoBehaviour
 
     List<string> firstChoice = new List<string>() { "Michel-Ange", "1783", "1495", "Suisse", "Denis Papin" };
 
+
+
     // Use this for initialization
     void Start()
     {
@@ -25,7 +27,11 @@ public class Text1 : MonoBehaviour
 
     void OnMouseDown()
     {
-        TextControl.selectedAnswer = gameObject.name;
-        TextControl.choiceSelected = "y";
+        if (TextControl.isClicked == 0)
+        {
+            TextControl.selectedAnswer = gameObject.name;
+            TextControl.choiceSelected = "y";
+            TextControl.isClicked = 1;
+        }
     }
 }
