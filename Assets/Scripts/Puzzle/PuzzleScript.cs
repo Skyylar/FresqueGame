@@ -21,6 +21,8 @@ public class PuzzleScript : MonoBehaviour {
 
     private List<CoOrds> puzzle_coord_v = new List<CoOrds>();
 
+    private float score;
+
     public struct CoOrds
     {
         public float x, y;
@@ -51,6 +53,7 @@ public class PuzzleScript : MonoBehaviour {
         }
         if (Input.GetMouseButtonDown(0))
         {
+            // get first piece
             if (piece_pos_1 == null)
             {
                 GameObject target_1 = getTarget();
@@ -60,6 +63,7 @@ public class PuzzleScript : MonoBehaviour {
                     setEmission(piece_pos_1, true);
                 }
             }
+            // get second piece for swap
             else if (piece_pos_2 == null)
             {
                 GameObject target_2 = getTarget();
@@ -71,13 +75,17 @@ public class PuzzleScript : MonoBehaviour {
                 swap_piece();
                 reset_pos();
                 int val = verify_puzzle();
+                // game end
                 if (val == 1)
                 {
                     timerstarted = false;
                     desc_enable();
-                    float score = Map(TimeG, 300, 25, 0, 20);
-                    GameManager.NoteAVG += (int)score;
-                    GameManager.NumberNote += 1;
+                    if (score == 0) 
+                    {
+                        score = Map(TimeG, 300, 25, 0, 20);
+                        GameManager.NoteAVG += (int)score;
+                        GameManager.NumberNote += 1;
+                    }
                 }
             }
         }
