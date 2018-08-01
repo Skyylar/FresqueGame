@@ -6,6 +6,9 @@ using System;
 
 public class gamescript : MonoBehaviour {
 
+	public static float TimeG;
+	public static bool timerstarted = true;
+
 	public string background;
 
 	public List<string> listTrue = new List<string>(5);
@@ -13,6 +16,8 @@ public class gamescript : MonoBehaviour {
 	private Texture myBackground;
 	private Texture objTrue;
 	private Texture objFalse;
+
+	private float score;
 
 	// Use this for initialization
 	void Start () {
@@ -23,10 +28,35 @@ public class gamescript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if (timerstarted == true) {
+				TimeG += Time.deltaTime;
+		}
 
+		int f;
+		int count = 0;
+		for(f=0;f<5;f++) {
+			GameObject text = GameObject.Find ("ListObject" + f.ToString());
+			string check = text.GetComponent<TextMesh>().text;
+			if(check == "") {
+				count++;
+			}
+			if(count == 5) {
+				timerstarted = false;
+				if(score == 0) {
+					score = Map(TimeG, 90, 10, 0, 20);
+					GameManager.NoteAVG += (int)score;
+					GameManager.NumberNote += 1;
+				}
+			}
+		}
 	}
 
-	void LoadList () {
+	private float Map(float x, int in_min,int in_max,int out_min,int out_max)
+	{
+			return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+	}
+
+	private void LoadList () {
 		string list;
 		int i;
 		for(i=0;i<5;i++) {
@@ -36,7 +66,7 @@ public class gamescript : MonoBehaviour {
 		}
 	}
 
-	void LoadBackground () {
+	private void LoadBackground () {
 		// chargement du background depuis le dossier resource
 		myBackground = Resources.Load ("Images/FindObject/" + background) as Texture;
 
@@ -44,7 +74,7 @@ public class gamescript : MonoBehaviour {
 		rawImage.GetComponent<RawImage>().texture = myBackground;
 	}
 
-	void LoadObjects () {
+	private void LoadObjects () {
 		//Chargement des objets
 		int i;
 		List<int> location = new List<int>(10);
@@ -59,7 +89,7 @@ public class gamescript : MonoBehaviour {
 		}
 	}
 
-	void GetTrueObjects(List<int> location, int i, List<string> listTrue) {
+	private void GetTrueObjects(List<int> location, int i, List<string> listTrue) {
 		System.Random rnd = new System.Random();
 		int checkTrue = rnd.Next(10);
 		int j = 0;
@@ -82,7 +112,7 @@ public class gamescript : MonoBehaviour {
 
 	}
 
-	void GetFalseObjects (List<int> location, List<int> listFalse) {
+	private void GetFalseObjects (List<int> location, List<int> listFalse) {
 		//Attribution emplacement false
 		System.Random test = new System.Random();
 		int checkFalse = test.Next(10);
