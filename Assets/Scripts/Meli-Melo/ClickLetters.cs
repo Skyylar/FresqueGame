@@ -5,14 +5,16 @@ using UnityEngine;
 public class ClickLetters : MonoBehaviour {
 
     public GameObject letters;
-    private GameMaster gM;
     public int index;
 
-
+    private GameMaster gM;
     private List<int> indexEmpty;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    /// <summary>
+    /// Retrieve game master and list of gameobject name of letters
+    /// </summary>
+    void Start () {
         gM = GameObject.Find("GameMaster").GetComponent<GameMaster>();
         indexEmpty = new List<int>();
         indexEmpty = gM.GetInstancesList();
@@ -24,10 +26,12 @@ public class ClickLetters : MonoBehaviour {
 		
 	}
 
+    /// <summary>
+    /// When a letter is clicked, remove it object, pass it value to the game master and increment index
+    /// </summary>
     private void OnMouseDown()
     {
         index = gM.index;
-        Debug.Log(indexEmpty[index].ToString());
         string currentLetter = letters.transform.GetChild(0).GetComponent<TextMesh>().text;
         GameObject.Find(indexEmpty[index].ToString()).transform.GetChild(0).GetComponent<TextMesh>().text = currentLetter;
         gM.incIndex();

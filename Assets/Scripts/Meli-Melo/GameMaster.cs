@@ -9,10 +9,10 @@ public class GameMaster : MonoBehaviour {
     public Transform emptyboxPrefab;
     public Transform letterBox;
     private string theWord = "imprimerie";
-    private float posXEmpty = -9;
-    private float posXLetter = -8;
+    private float posXEmpty = -4.5F;
+    private float posXLetter = -4.5F;
     public int index;
-    private string question = "Qu'inventa Gutemberg pour faciliter la copie de livre ?";
+    private string question = "Qu'inventa Gutemberg pour copier les livres ?";
     public Button onlyOne;
 
     private string answer;
@@ -88,7 +88,6 @@ public class GameMaster : MonoBehaviour {
     {
         Debug.Log(s);
     }
-
 
     private bool CheckNumber(int number)
     {
