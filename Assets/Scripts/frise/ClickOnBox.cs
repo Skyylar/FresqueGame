@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class ClickOnBox : MonoBehaviour {
 
     public Transform box;
-    private string name;
+    private string name = "";
 	// Use this for initialization
 	void Start () {
         name = box.name;
@@ -21,7 +21,6 @@ public class ClickOnBox : MonoBehaviour {
 
     private void OnMouseDown()
     {
-        Debug.Log("Start_" + name);
         Type type = this.GetType();
         MethodInfo call = type.GetMethod("Start_"+name);
         call.Invoke(this, new object[] { });
@@ -30,35 +29,30 @@ public class ClickOnBox : MonoBehaviour {
     //Start prehistoire
     public void Start_Prehistoire()
     {
-        Debug.Log("Vous avez cliqué sur le bouton prehistoire.");
         SceneManager.LoadScene("FindObject", LoadSceneMode.Single);
     }
 
     //Start antiquite
     public void Start_Antiquite()
     {
-        Debug.Log("Vous avez cliqué sur le bouton antiquite.");
         SceneManager.LoadScene("Puzzle", LoadSceneMode.Single);
     }
 
     //Start moyen-age
     public void Start_MoyenAge()
     {
-        Debug.Log("Vous avez cliqué sur le bouton moyen-age.");
         SceneManager.LoadScene("WordGame", LoadSceneMode.Single);
     }
 
     //Start temps modernes
     public void Start_TempsModernes()
     {
-        Debug.Log("Vous avez cliqué sur le bouton temps modernes.");
         SceneManager.LoadScene("quiz", LoadSceneMode.Single);
     }
 
     //Start XIXeme siecle
     public void Start_XIXSiecle()
     {
-        Debug.Log("Vous avez cliqué sur le bouton XIXeme siecle.");
         GameManager.VideoName = "Le XIXe siècle - Un peu d'histoire.mp4";
         SceneManager.LoadScene("videoPlayer", LoadSceneMode.Single);
     }
@@ -66,7 +60,6 @@ public class ClickOnBox : MonoBehaviour {
     //Start XXeme siecle
     public void Start_XXSiecle()
     {
-        Debug.Log("Vous avez cliqué sur le bouton XXeme siecle.");
         GameManager.VideoName = "Le XXe siècle - Un peu d’histoire.mp4";
         SceneManager.LoadScene("videoPlayer", LoadSceneMode.Single);
     }

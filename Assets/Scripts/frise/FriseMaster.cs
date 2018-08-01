@@ -53,6 +53,9 @@ public class FriseMaster : MonoBehaviour {
         {
             score = (int)(GameManager.NoteFindObject + GameManager.NoteMeliMelo + GameManager.NotePuzzle + GameManager.NoteQuiz) / GameManager.NumberNote;   
         }
-        SendScore(score);
+        Debug.Log(GameManager.NumberNote);
+        Debug.Log(score);
+
+        //SendScore(score);
     }
 }

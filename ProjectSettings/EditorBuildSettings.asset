@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WordGame.unity
     guid: b8b152ca13f6641fd9689bdd8d833abb
+  - enabled: 1
+    path: Assets/Scenes/videoPlayer.unity
+    guid: 226fd0e7915f1488ba37a326d3589aac
   m_configObjects: {}

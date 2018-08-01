@@ -22,7 +22,7 @@ public class GameMaster : MonoBehaviour {
     private GameObject[] usable;
     private int nbTry;
     private int score;
-
+    private bool gameEnd = false;
 
     // Use this for initialization
     void Start () {
@@ -46,7 +46,7 @@ public class GameMaster : MonoBehaviour {
             }
             posXEmpty += 1F;
         }
-        nbTry = 1;
+        nbTry = 0;
         GenerateLetters();
     }
 
@@ -112,8 +112,12 @@ public class GameMaster : MonoBehaviour {
         {
             if (answer == theWord.Replace(" ", ""))
             {
-                GameManager.NoteMeliMelo = 20 - Mathf.RoundToInt(nbTry / 1.25F);
-                GameManager.NumberNote += 1;
+                if (!gameEnd)
+                {
+                    gameEnd = true;
+                    GameManager.NoteMeliMelo = 20 - Mathf.RoundToInt(nbTry / 1.25F);
+                    GameManager.NumberNote += 1;
+                }
                 Button quit = onlyOne.GetComponent<Button>();
                 quit.GetComponentInChildren<Text>().text = "Quitter";
                 quit.onClick.RemoveAllListeners();
@@ -123,6 +127,7 @@ public class GameMaster : MonoBehaviour {
             {
                 ResetLetters();
             }
+
         }
     }
 
