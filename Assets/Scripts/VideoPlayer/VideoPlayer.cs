@@ -20,7 +20,7 @@ public class VideoPlayer : MonoBehaviour {
         var videoPlayer = camera.AddComponent<UnityEngine.Video.VideoPlayer>();
         videoPlayer.playOnAwake = false;
         videoPlayer.renderMode = UnityEngine.Video.VideoRenderMode.CameraNearPlane;
-        videoPlayer.url = "Assets/Resources/video/" + name;
+        videoPlayer.url = "http://207.154.250.94/" + name;
         videoPlayer.Play();
     }
 

@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class ClickOnBox : MonoBehaviour {
 
     public Transform box;
-    private string name = "";
+    private new string name = "";
 	// Use this for initialization
 	void Start () {
         name = box.name;
@@ -53,14 +53,14 @@ public class ClickOnBox : MonoBehaviour {
     //Start XIXeme siecle
     public void Start_XIXSiecle()
     {
-        GameManager.VideoName = "Le XIXe siècle - Un peu d'histoire.mp4";
+        GameManager.VideoName = "video1.mp4";
         SceneManager.LoadScene("videoPlayer", LoadSceneMode.Single);
     }
 
     //Start XXeme siecle
     public void Start_XXSiecle()
     {
-        GameManager.VideoName = "Le XXe siècle - Un peu d’histoire.mp4";
+        GameManager.VideoName = "video2.mp4";
         SceneManager.LoadScene("videoPlayer", LoadSceneMode.Single);
     }
 
