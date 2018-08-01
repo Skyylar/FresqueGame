@@ -76,6 +76,8 @@ public class PuzzleScript : MonoBehaviour {
                     timerstarted = false;
                     desc_enable();
                     float score = Map(TimeG, 300, 25, 0, 20);
+                    GameManager.NoteAVG += (int)score;
+                    GameManager.NumberNote += 1;
                 }
             }
         }

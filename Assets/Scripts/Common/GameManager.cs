@@ -6,6 +6,10 @@ public class GameManager : MonoBehaviour {
 
     public static string VideoName { get;set; }
 
+    public static int NoteAVG { get; set; }
+
+    public static int NumberNote { get; set; }
+   
 	// Use this for initialization
 	void Start () {
 		
