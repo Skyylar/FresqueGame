@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Runtime.InteropServices;
 
 public class FriseMaster : MonoBehaviour {
+
+    [DllImport("__Internal")]
+    private static extern void SendScore(int score);
 
 	// Use this for initialization
 	void Start () {
@@ -41,4 +45,14 @@ public class FriseMaster : MonoBehaviour {
             GameObject.Find("MoyenAge").GetComponent<ClickOnBox>().enabled = false;
         }
 	}
+
+    public void sendScore()
+    {
+        int score = 0;
+        if (GameManager.NumberNote != 0) 
+        {
+            score = (int)(GameManager.NoteFindObject + GameManager.NoteMeliMelo + GameManager.NotePuzzle + GameManager.NoteQuiz) / GameManager.NumberNote;   
+        }
+        SendScore(score);
+    }
 }
