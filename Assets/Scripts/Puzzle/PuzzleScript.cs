@@ -1,5 +1,4 @@
 ﻿ using System;
- using System.Collections;
  using System.Collections.Generic;
  using UnityEngine;
  using UnityEngine.UI;
@@ -32,7 +31,6 @@ public class PuzzleScript : MonoBehaviour {
 
 
     void Start() {
-
         TimeG = Time.deltaTime;
         start_desc();
         reset_pos();
@@ -43,6 +41,11 @@ public class PuzzleScript : MonoBehaviour {
         swap_all_pieces();
     }
 
+    /// <summary>
+    ///     Ajoute/Supprime un effet lumineux sur une piece de puzzle sélectionné 
+    /// </summary>
+    /// <param name="go">Go.</param>
+    /// <param name="value">If set to <c>true</c> value.</param>
     void setEmission(GameObject go, bool value) {
          Color finalColor = Color.black;
         if (value == true) {
@@ -57,6 +60,10 @@ public class PuzzleScript : MonoBehaviour {
         m.SetColor ("_EmissionColor", finalColor);
     }
 
+    /// <summary>
+    ///    Génere la description de la photo du puzzle
+    ///    Désactive l'affichage de la description
+    /// </summary>
     void start_desc() {
         GameObject go = GameObject.Find("desc_canvas");
         Image image = go.GetComponent<Image>();
@@ -67,6 +74,9 @@ public class PuzzleScript : MonoBehaviour {
         Text.enabled = false;
     }
 
+    /// <summary>
+    ///     Active l'affiche la description
+    /// </summary>
     void desc_enable() {
         GameObject go1 = GameObject.Find("desc");
         Text text = go1.GetComponent<Text>();
@@ -77,6 +87,9 @@ public class PuzzleScript : MonoBehaviour {
             image.enabled = !image.enabled;
     }
 
+    /// <summary>
+    ///     Récupere les coordonnées du tout le puzzle avant le tri de celle-ci
+    /// </summary>
     void get_coord_before_start() {
         GameObject[] gos = GameObject.FindGameObjectsWithTag("Puzzle_board");
         foreach (GameObject go in gos) {
@@ -84,6 +97,10 @@ public class PuzzleScript : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    ///     Vérifie si le puzzle est résolue
+    /// </summary>
+    /// <returns>int</returns>
     int verify_puzzle() {
         GameObject[] gos = GameObject.FindGameObjectsWithTag("Puzzle_board");
         int check = 0;
@@ -100,6 +117,9 @@ public class PuzzleScript : MonoBehaviour {
         return 0;
     }
 
+    /// <summary>
+    ///     Génere un cadre noir autour de l'image
+    /// </summary>
     void set_cadre() {
         for (int p = 0; p < 4; p++) {
             for (int x = 0; x < tex.width; x++)
@@ -144,6 +164,13 @@ public class PuzzleScript : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    ///    Vérifie si les coordonnées d'une piece est déja présente.
+    /// </summary>
+    /// <returns>If coord exist</returns>
+    /// <param name="coord">Coordinate.</param>
+    /// <param name="a">The alpha component.</param>
+    /// <param name="b">The blue component.</param>
     int getNewCoord(Dictionary<int, CoOrds> coord, int a, int b) {
         foreach (KeyValuePair<int, CoOrds> array in coord)
             {
@@ -154,6 +181,9 @@ public class PuzzleScript : MonoBehaviour {
         return 0;
     }
 
+    /// <summary>
+    ///     Mélange le puzzle
+    /// </summary>
     void swap_all_pieces() {
         int rows = Mathf.RoundToInt(cols * aspect);
         Dictionary<int, CoOrds> coord =
@@ -174,6 +204,9 @@ public class PuzzleScript : MonoBehaviour {
 
     }
 
+    /// <summary>
+    ///     Échange la position entre deux pieces
+    /// </summary>
     void swap_piece() {
         String name_1 = piece_pos_1.name;
         String name_2 = piece_pos_2.name;
@@ -188,6 +221,10 @@ public class PuzzleScript : MonoBehaviour {
         Temp_pos = new Vector3(0,0,0);
     }
 
+    /// <summary>
+    ///     Récupere l'objet qui a été sélectionné
+    /// </summary>
+    /// <returns>The target.</returns>
     GameObject getTarget() {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -202,6 +239,9 @@ public class PuzzleScript : MonoBehaviour {
         return null;
     }
 
+    /// <summary>
+    ///     Découpe une materiel en plusieurs pieces de puzzle
+    /// </summary>
     void BuildPieces() {
         int rows = Mathf.RoundToInt(cols * aspect);
         Vector3 offset = Vector3.zero;
