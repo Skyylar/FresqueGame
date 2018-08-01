@@ -5,7 +5,7 @@ using UnityEngine;
 public class Text4 : MonoBehaviour
 {
 
-    List<string> fourthChoice = new List<string>() { "Fourth choice question 1", "Fourth choice question 2", "Fourth choice question 3", "Fourth choice question 4", "Fourth choice question 5" };
+    List<string> fourthChoice = new List<string>() { "Vincent van Gogh", "1785", "1489", "France", "Thomas Edison" };
 
     // Use this for initialization
     void Start()

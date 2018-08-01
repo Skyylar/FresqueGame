@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NextButton : MonoBehaviour {
 
@@ -23,6 +24,6 @@ public class NextButton : MonoBehaviour {
         TextControl.nextActivator = 0;
         TextControl.randQuestion = -1;
         resultObj.GetComponent<TextMesh>().text = "";
-        nextObj.GetComponent<TextMesh>().text = ""; 
+        nextObj.GetComponent<TextMesh>().text = "";
     }
 }

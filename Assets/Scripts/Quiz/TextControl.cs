@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TextControl : MonoBehaviour
 {
+    static List<string> questions = new List<string>() { "Qui a peint la Joconde ?", "Quand ont lieu les premiers vols en montgolfière ?", "Quand Christophe Colomb a-t-il découvert l'Amérique?", "Louis XIV a été roi de quel pays ?", "Qui a inventé la Machine à vapeur ?" };
 
-    static List<string> questions = new List<string>() { "This is the first question", "This is the second question", "This is the third question", "This is the fourth question", "This is the fifth question" };
-
-    List<string> correctAnswer = new List<string>() { "1", "2", "3", "4", "4" };
+    List<string> correctAnswer = new List<string>() { "2", "1", "3", "4", "1" };
 
     List<int> previousQuestions = new List<int>() { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+
     public int questionNumber = 0;
 
     public Transform resultObj;
@@ -20,6 +21,7 @@ public class TextControl : MonoBehaviour
     public static string selectedAnswer;
 
     public static string choiceSelected = "n";
+
     public static int nextActivator = 0;
 
     public static int randQuestion = -1;
@@ -31,6 +33,7 @@ public class TextControl : MonoBehaviour
     public int sizeList = questions.Count;
 
     public static int i = 0;
+
 
     // Use this for initialization
     void Start()

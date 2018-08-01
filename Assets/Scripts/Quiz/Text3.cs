@@ -5,7 +5,7 @@ using UnityEngine;
 public class Text3 : MonoBehaviour
 {
 
-    List<string> thirdChoice = new List<string>() { "Third choice question 1", "Third choice question 2", "Third choice question 3", "Third choice question 4", "Third choice question 5" };
+    List<string> thirdChoice = new List<string>() { "Pablo Picasso", "1764", "1492", "Italie", "Albert Einstein" };
 
     // Use this for initialization
     void Start()
