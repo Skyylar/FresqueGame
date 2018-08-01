@@ -209,16 +209,18 @@ public class PuzzleScript : MonoBehaviour {
     /// </summary>
     void swap_piece() {
         String name_1 = piece_pos_1.name;
-        String name_2 = piece_pos_2.name;
-        String temp = name_1;
+        if (piece_pos_2 != null) {
+            String name_2 = piece_pos_2.name;
+            String temp = name_1;
 
-        name_1 = name_2;
-        name_2 = temp;
+            name_1 = name_2;
+            name_2 = temp;
 
-        Vector3 Temp_pos = piece_pos_1.transform.position;
-        piece_pos_1.transform.position = piece_pos_2.transform.position;
-        piece_pos_2.transform.position = Temp_pos;
-        Temp_pos = new Vector3(0,0,0);
+            Vector3 Temp_pos = piece_pos_1.transform.position;
+            piece_pos_1.transform.position = piece_pos_2.transform.position;
+            piece_pos_2.transform.position = Temp_pos;
+            Temp_pos = new Vector3(0, 0, 0);
+        }
     }
 
     /// <summary>
@@ -251,7 +253,9 @@ public class PuzzleScript : MonoBehaviour {
         float uvWidth = 1.0f / cols;
         float uvHeight = 1.0f / rows;
 
+        // Génére les pieces par lignes
         for (int i = 0; i < rows; i++) {
+            // Génére les pieces par colonnes
             for (int j = 0; j < cols; j++) {
                 GameObject go = GameObject.CreatePrimitive(PrimitiveType.Quad);
                 go.name = "piece_" + i + "_" + j;
@@ -261,6 +265,7 @@ public class PuzzleScript : MonoBehaviour {
                 t.localScale = new Vector3(0.95f, 0.95f, 0.95f);
                 go.GetComponent<Renderer>().material = mat;
 
+                // Ajoute la texture découper
                 Mesh mesh = go.GetComponent<MeshFilter>().mesh;
                 Vector2[] uvs = mesh.uv;
                 uvs[0] = new Vector3(j * uvWidth, i * uvHeight);
