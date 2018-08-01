@@ -83,7 +83,7 @@ public class PuzzleScript : MonoBehaviour {
                     if (score == 0) 
                     {
                         score = Map(TimeG, 300, 25, 0, 20);
-                        GameManager.NoteAVG += (int)score;
+                        GameManager.NotePuzzle = (int)score;
                         GameManager.NumberNote += 1;
                     }
                 }

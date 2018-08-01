@@ -44,7 +44,7 @@ public class gamescript : MonoBehaviour {
 				timerstarted = false;
 				if(score == 0) {
 					score = Map(TimeG, 90, 10, 0, 20);
-					GameManager.NoteAVG += (int)score;
+                    GameManager.NoteFindObject = (int)score;
 					GameManager.NumberNote += 1;
 				}
 			}

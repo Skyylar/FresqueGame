@@ -112,7 +112,8 @@ public class GameMaster : MonoBehaviour {
         {
             if (answer == theWord.Replace(" ", ""))
             {
-                score = 20 - Mathf.RoundToInt(nbTry / 1.25F);
+                GameManager.NoteMeliMelo = 20 - Mathf.RoundToInt(nbTry / 1.25F);
+                GameManager.NumberNote += 1;
                 Button quit = onlyOne.GetComponent<Button>();
                 quit.GetComponentInChildren<Text>().text = "Quitter";
                 quit.onClick.RemoveAllListeners();
