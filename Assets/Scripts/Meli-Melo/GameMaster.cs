@@ -21,6 +21,7 @@ public class GameMaster : MonoBehaviour {
     private List<int> emptyBoxInstancesId;
     private GameObject[] usable;
     private int nbTry;
+    private int score;
 
 
     // Use this for initialization
@@ -111,6 +112,7 @@ public class GameMaster : MonoBehaviour {
         {
             if (answer == theWord.Replace(" ", ""))
             {
+                score = 20 - Mathf.RoundToInt(nbTry / 1.25F);
                 Button quit = onlyOne.GetComponent<Button>();
                 quit.GetComponentInChildren<Text>().text = "Quitter";
                 quit.onClick.RemoveAllListeners();
