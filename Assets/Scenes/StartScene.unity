@@ -211,8 +211,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -50}
-  m_SizeDelta: {x: 260, y: 40}
+  m_AnchoredPosition: {x: 0, y: -76}
+  m_SizeDelta: {x: 400, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &384556073
 MonoBehaviour:
@@ -235,7 +235,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 34
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -591,7 +591,7 @@ MonoBehaviour:
   m_Text: "Lors d\u2019un voyage dans le temps, afin d\u2019en apprendre plus sur
     les humains, un incident arrive et vos amis (les \xE9toiles) sont projet\xE9s
     \xE0 diff\xE9rentes \xE9poques.\nPour les retrouver, r\xE9solvez le mini-jeux
-    de chaque \xE9poque.\n"
+    de chaque \xE9poque.\n\n\n"
 --- !u!222 &1097674678
 CanvasRenderer:
   m_ObjectHideFlags: 0
