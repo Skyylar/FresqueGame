@@ -21,7 +21,7 @@ public class FriseMaster : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        //GameObject.Find("ButtonExit").GetComponent<Button>().interactable = false;
+        
     }
 
     // Update is called once per frame
