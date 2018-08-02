@@ -47,11 +47,13 @@ public class PuzzleScript : MonoBehaviour {
 
     void Update()
     {
+        // Start timer
         if (timerstarted == true) 
         {
             TimeG += Time.deltaTime;
         }
-        if (Input.GetMouseButtonDown(0))
+        // get input of mouse click if score not set
+        if (Input.GetMouseButtonDown(0) && score == 0)
         {
             // get first piece
             if (piece_pos_1 == null)
@@ -70,9 +72,9 @@ public class PuzzleScript : MonoBehaviour {
                 if (target_2 != null)
                 {
                     piece_pos_2 = target_2;
+                    swap_piece();
                 }
                 setEmission(piece_pos_1, false);
-                swap_piece();
                 reset_pos();
                 int val = verify_puzzle();
                 // game end
@@ -258,19 +260,16 @@ public class PuzzleScript : MonoBehaviour {
     void swap_piece() 
     {
         String name_1 = piece_pos_1.name;
-        if (piece_pos_2 != null) 
-        {
-            String name_2 = piece_pos_2.name;
-            String temp = name_1;
+        String name_2 = piece_pos_2.name;
+        String temp = name_1;
 
-            name_1 = name_2;
-            name_2 = temp;
+        name_1 = name_2;
+        name_2 = temp;
 
-            Vector3 Temp_pos = piece_pos_1.transform.position;
-            piece_pos_1.transform.position = piece_pos_2.transform.position;
-            piece_pos_2.transform.position = Temp_pos;
-            Temp_pos = new Vector3(0, 0, 0);
-        }
+        Vector3 Temp_pos = piece_pos_1.transform.position;
+        piece_pos_1.transform.position = piece_pos_2.transform.position;
+        piece_pos_2.transform.position = Temp_pos;
+        Temp_pos = new Vector3(0, 0, 0);
     }
 
     /// <summary>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Runtime.InteropServices;
+using UnityEngine.SceneManagement;
 
 public class FriseMaster : MonoBehaviour {
 
@@ -73,5 +74,6 @@ public class FriseMaster : MonoBehaviour {
     public void sendScore()
     {
         SendScore(score);
+        SceneManager.LoadScene("StartScene", LoadSceneMode.Single);
     }
 }
