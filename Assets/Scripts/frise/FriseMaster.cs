@@ -6,8 +6,14 @@ using System.Runtime.InteropServices;
 
 public class FriseMaster : MonoBehaviour {
 
+    private bool disableFind = false;
+    private bool disableQuizz = false;
+    private bool disablePuzzle = false;
+    private bool disableMeli = false;
+
     [DllImport("__Internal")]
     private static extern void SendScore(int score);
+    
 
 	// Use this for initialization
 	void Start () {
@@ -16,27 +22,40 @@ public class FriseMaster : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (GameManager.NoteFindObject != 0)
-        {
-            GameObject.Find("Prehistoire").GetComponent<BoxCollider>().enabled = false;
-            GameObject.Find("Prehistoire").GetComponent<ClickOnBox>().enabled = false;
-        }
-        if (GameManager.NoteQuiz != 0)
-        {
-            GameObject.Find("TempsModernes").GetComponent<BoxCollider>().enabled = false;
-            GameObject.Find("TempsModernes").GetComponent<ClickOnBox>().enabled = false;
-        }
-        if (GameManager.NotePuzzle != 0)
-        {
-            GameObject.Find("Antiquite").GetComponent<BoxCollider>().enabled = false;
-            GameObject.Find("Antiquite").GetComponent<ClickOnBox>().enabled = false;
-        }
-        if (GameManager.NoteMeliMelo != 0)
-        {
-            GameObject.Find("MoyenAge").GetComponent<BoxCollider>().enabled = false;
-            GameObject.Find("MoyenAge").GetComponent<ClickOnBox>().enabled = false;
-        }
+        disableGames();
 	}
+
+
+    private void disableGames()
+    {
+        if (GameManager.NoteFindObject != 0 && !disableFind)
+        {
+            disableFind = true;
+            disableClick("Prehistoire");
+        }
+        if (GameManager.NoteQuiz != 0 && !disableQuizz)
+        {
+            disableQuizz = true;
+            disableClick("TempsModernes");
+        }
+        if (GameManager.NotePuzzle != 0 && !disablePuzzle)
+        {
+            disablePuzzle = true;
+            disableClick("Antiquite");
+        }
+        if (GameManager.NoteMeliMelo != 0 && !disableMeli)
+        {
+            disableMeli = true;
+            disableClick("MoyenAge");
+        }
+    }
+
+    private void disableClick(string name)
+    {
+        GameObject.Find(name).GetComponent<BoxCollider>().enabled = false;
+        GameObject.Find(name).GetComponent<ClickOnBox>().enabled = false;
+    }
+
 
     public void sendScore()
     {
@@ -48,6 +67,6 @@ public class FriseMaster : MonoBehaviour {
         Debug.Log(GameManager.NumberNote);
         Debug.Log(score);
 
-        //SendScore(score);
+        SendScore(score);
     }
 }
