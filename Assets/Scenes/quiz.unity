@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 267210370}
   - component: {fileID: 267210369}
   m_Layer: 0
-  m_Name: answer4
+  m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -824,7 +824,7 @@ GameObject:
   - component: {fileID: 1474832151}
   - component: {fileID: 1474832150}
   m_Layer: 0
-  m_Name: answer2
+  m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1084,7 +1084,7 @@ GameObject:
   - component: {fileID: 1783620785}
   - component: {fileID: 1783620784}
   m_Layer: 0
-  m_Name: answer3
+  m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1213,7 +1213,7 @@ GameObject:
   - component: {fileID: 1917325992}
   - component: {fileID: 1917325991}
   m_Layer: 0
-  m_Name: answer1
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
