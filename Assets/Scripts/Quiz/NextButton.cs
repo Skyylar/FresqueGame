@@ -9,14 +9,6 @@ public class NextButton : MonoBehaviour {
 
     public Transform nextObj;
 
-    void Start () {
-		
-	}
-	
-	void Update () {
-		
-	}
-
     void OnMouseDown()
     {
         // Au clique sur le bouton suivant remet a 0 les variables

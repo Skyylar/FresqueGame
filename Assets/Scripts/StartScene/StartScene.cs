@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class StartScene : MonoBehaviour 
 {
 
-    // Start Games function
+    // Load scene 'Friscene'
     public void startGames() => SceneManager.LoadScene("friscene", LoadSceneMode.Single);
 
 }

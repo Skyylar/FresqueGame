@@ -7,20 +7,6 @@ using System;
 
 public class buttonscript : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-
-	}
-
-	// Update is called once per frame
-	void Update () {
-
-	}
-
-	//Bouton retour menu
-	public void back_menu () {
-		SceneManager.LoadScene("friscene", LoadSceneMode.Single);
-	}
 
 	public void OnClickObject (Button button) {
 

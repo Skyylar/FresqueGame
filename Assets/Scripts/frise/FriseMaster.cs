@@ -21,7 +21,7 @@ public class FriseMaster : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        
+    
     }
 
     // Update is called once per frame
@@ -35,6 +35,9 @@ public class FriseMaster : MonoBehaviour {
         }
 	}
 
+    /// <summary>
+    ///     Set and Update note on board after finish mini-games
+    /// </summary>
     private void setNote()
     {
         if (GameManager.NumberNote > 0)
@@ -47,6 +50,9 @@ public class FriseMaster : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    ///     Disable parts of frise after game realized
+    /// </summary>
     private void disableGames()
     {
         if (GameManager.NoteFindObject != 0 && !disableFind)
@@ -75,12 +81,20 @@ public class FriseMaster : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    ///     Disable click
+    /// </summary>
+    /// <param name="name">Name.</param>
     private void disableClick(string name)
     {
         GameObject.Find(name).GetComponent<BoxCollider>().enabled = false;
         GameObject.Find(name).GetComponent<ClickOnBox>().enabled = false;
     }
 
+    /// <summary>
+    ///     Active star after games realized
+    /// </summary>
+    /// <param name="i">The index.</param>
     private void enableStar(int i)
     {
         GameObject star = GameObject.Find("star" + i.ToString());
@@ -89,6 +103,8 @@ public class FriseMaster : MonoBehaviour {
         star.GetComponent<SpriteRenderer>().color = tmp;
     }
 
-
+    /// <summary>
+    ///     Load scene StartScene
+    /// </summary>
     public void sendScore() => SceneManager.LoadScene("StartScene", LoadSceneMode.Single);
 }

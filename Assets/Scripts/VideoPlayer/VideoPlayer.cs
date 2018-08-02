@@ -14,6 +14,10 @@ public class VideoPlayer : MonoBehaviour {
 		
 	}
 
+    /// <summary>
+    /// Gets the video.
+    /// </summary>
+    /// <param name="name">Name.</param>
     public void get_video(string name)
     {
         GameObject camera = GameObject.Find("Main Camera");
@@ -24,6 +28,10 @@ public class VideoPlayer : MonoBehaviour {
         videoPlayer.Play();
     }
 
+    /// <summary>
+    /// Ends the reached.
+    /// </summary>
+    /// <param name="vp">Vp.</param>
     private void EndReached(UnityEngine.Video.VideoPlayer vp)
     {
         vp.playbackSpeed = vp.playbackSpeed / 10.0F;
