@@ -10,7 +10,6 @@ public class ClickLetters : MonoBehaviour {
     private GameMaster gM;
     private List<int> indexEmpty;
 
-    // Use this for initialization
     /// <summary>
     /// Retrieve game master and list of gameobject name of letters
     /// </summary>

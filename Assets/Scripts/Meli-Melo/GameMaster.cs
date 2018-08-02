@@ -50,6 +50,25 @@ public class GameMaster : MonoBehaviour {
         GenerateLetters();
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        if (!gameEnd && index == theWord.Replace(" ", "").Length)
+        {
+            if (answer == theWord.Replace(" ", ""))
+            {
+                gameEnd = true;
+                GameManager.NoteMeliMelo = 20 - Mathf.RoundToInt(nbTry / 1.25F);
+                GameManager.NumberNote += 1;
+                Destroy(onlyOne.gameObject);
+            }
+            else
+            {
+                ResetLetters();
+            }
+        }
+    }
+
     private void GenerateLetters()
     {
         int random = 0;
@@ -106,30 +125,6 @@ public class GameMaster : MonoBehaviour {
         answer += s;
     }
 
-	// Update is called once per frame
-	void Update () {
-        if (index == theWord.Replace(" ", "").Length)
-        {
-            if (answer == theWord.Replace(" ", ""))
-            {
-                if (!gameEnd)
-                {
-                    gameEnd = true;
-                    GameManager.NoteMeliMelo = 20 - Mathf.RoundToInt(nbTry / 1.25F);
-                    GameManager.NumberNote += 1;
-                }
-                Button quit = onlyOne.GetComponent<Button>();
-                quit.GetComponentInChildren<Text>().text = "Quitter";
-                quit.onClick.RemoveAllListeners();
-                quit.onClick.AddListener(Exit);
-            }
-            else
-            {
-                ResetLetters();
-            }
-
-        }
-    }
 
     void Exit()
     {
