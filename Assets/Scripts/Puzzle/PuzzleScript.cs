@@ -4,25 +4,40 @@
  using UnityEngine.UI;
 
 public class PuzzleScript : MonoBehaviour {
-    
+
+    // Control Timer of games
     public static float TimeG;
     public static bool timerstarted = true;
 
+    // Get Texture of puzzle and material where texture was apply
     public Texture2D tex;
     public Material mat;
+
+    // Set Number of columns
     private int cols = 5;
+
+    // Set Description of Puzzle image
     private string desc = "Symbole architectural de la suprématie athénienne à l'époque classique, le Parthénon est probablement le temple qui a le plus inspiré les architectes néo-classiques. Il a servi de modèle dans de nombreux pays occidentaux";
+
+    // Set Aspect, permit the cut of puzzle piece
     private float aspect = 1f;
-	private Vector3 screenPoint;
+	
+    // Offset of each pieces
  	private Vector3 offset;
 
+    // Piece one and piece two for swap
     private GameObject piece_pos_1;
     private GameObject piece_pos_2;
 
+    // List of coordinate of piece resolve
     private List<CoOrds> puzzle_coord_v = new List<CoOrds>();
 
+    // Storage of score
     private float score;
 
+    /// <summary>
+    ///  structur for get CoOrds 
+    /// </summary>
     public struct CoOrds
     {
         public float x, y;
@@ -34,7 +49,9 @@ public class PuzzleScript : MonoBehaviour {
         }
     }
 
-
+    /// <summary>
+    ///     Start this instance.
+    /// </summary>
     void Start() {
         start_desc();
         reset_pos();
@@ -45,6 +62,9 @@ public class PuzzleScript : MonoBehaviour {
         swap_all_pieces();
     }
 
+    /// <summary>
+    ///     Update this instance.
+    /// </summary>
     void Update()
     {
         // Start timer
@@ -93,13 +113,22 @@ public class PuzzleScript : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    ///     Get value between out_min and out_max thanks to another value between in_min and in_max
+    /// </summary>
+    /// <returns>The map.float</returns>
+    /// <param name="x">The x coordinate.</param>
+    /// <param name="in_min">In minimum.</param>
+    /// <param name="in_max">In max.</param>
+    /// <param name="out_min">Out minimum.</param>
+    /// <param name="out_max">Out max.</param>
     private float Map(float x, int in_min,int in_max,int out_min,int out_max) 
     {
         return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
     }
 
     /// <summary>
-    ///     Ajoute/Supprime un effet lumineux sur une piece de puzzle sélectionné 
+    ///     Add/Delete light effect on selected piece of puzzle  
     /// </summary>
     /// <param name="go">Go.</param>
     /// <param name="value">If set to <c>true</c> value.</param>
@@ -121,8 +150,8 @@ public class PuzzleScript : MonoBehaviour {
     }
 
     /// <summary>
-    ///    Génere la description de la photo du puzzle
-    ///    Désactive l'affichage de la description
+    ///    Spawn description of puzzle picture
+    ///    Disable display of description
     /// </summary>
     void start_desc() 
     {
@@ -136,7 +165,7 @@ public class PuzzleScript : MonoBehaviour {
     }
 
     /// <summary>
-    ///     Active l'affiche la description
+    ///     Activate display of description
     /// </summary>
     void desc_enable() 
     {
@@ -150,6 +179,7 @@ public class PuzzleScript : MonoBehaviour {
     }
 
     /// <summary>
+    ///     Get coordinate of all puzzle before sort of pieces
     ///     Récupere les coordonnées du tout le puzzle avant le tri de celle-ci
     /// </summary>
     void get_coord_before_start() 
@@ -162,9 +192,9 @@ public class PuzzleScript : MonoBehaviour {
     }
 
     /// <summary>
-    ///     Vérifie si le puzzle est résolue
+    ///     Check if puzzle is valid
     /// </summary>
-    /// <returns>int</returns>
+    /// <returns>The puzzle.int</returns>
     int verify_puzzle() {
         GameObject[] gos = GameObject.FindGameObjectsWithTag("Puzzle_board");
         int check = 0;
@@ -186,7 +216,7 @@ public class PuzzleScript : MonoBehaviour {
     }
 
     /// <summary>
-    ///     Génere un cadre noir autour de l'image
+    ///    Generates a black frame around the image
     /// </summary>
     void set_cadre() 
     {
@@ -211,7 +241,7 @@ public class PuzzleScript : MonoBehaviour {
     }
 
     /// <summary>
-    ///    Vérifie si les coordonnées d'une piece est déja présente.
+    ///    Check if coordinate of piece is in List
     /// </summary>
     /// <returns>If coord exist</returns>
     /// <param name="coord">Coordinate.</param>
@@ -230,7 +260,7 @@ public class PuzzleScript : MonoBehaviour {
     }
 
     /// <summary>
-    ///     Mélange le puzzle
+    ///     Mixing puzzle
     /// </summary>
     void swap_all_pieces() 
     {
@@ -255,7 +285,7 @@ public class PuzzleScript : MonoBehaviour {
     }
 
     /// <summary>
-    ///     Échange la position entre deux pieces
+    ///     Swap position of two pieces
     /// </summary>
     void swap_piece() 
     {
@@ -273,7 +303,7 @@ public class PuzzleScript : MonoBehaviour {
     }
 
     /// <summary>
-    ///     Récupere l'objet qui a été sélectionné
+    ///     Get GameObject selected
     /// </summary>
     /// <returns>The target.</returns>
     GameObject getTarget() 
@@ -295,7 +325,7 @@ public class PuzzleScript : MonoBehaviour {
     }
 
     /// <summary>
-    ///     Découpe une materiel en plusieurs pieces de puzzle
+    ///     Cut material and create few piece of puzzle
     /// </summary>
     void BuildPieces() 
     {
@@ -307,12 +337,13 @@ public class PuzzleScript : MonoBehaviour {
         float uvWidth = 1.0f / cols;
         float uvHeight = 1.0f / rows;
 
-        // Génére les pieces par lignes
+        // Generate pieces by lines
         for (int i = 0; i < rows; i++) 
         {
-            // Génére les pieces par colonnes
+            // Generate pieces by columns
             for (int j = 0; j < cols; j++) 
             {
+                // Create GameObject of one piece
                 GameObject go = GameObject.CreatePrimitive(PrimitiveType.Quad);
                 go.name = "piece_" + i + "_" + j;
                 go.tag = "Puzzle_board";
