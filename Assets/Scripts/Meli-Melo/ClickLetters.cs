@@ -10,14 +10,17 @@ public class ClickLetters : MonoBehaviour {
     private GameMaster gM;
     private List<int> indexEmpty;
 
-    /// <summary>
-    /// Retrieve game master and list of gameobject name of letters
-    /// </summary>
+    // Use this for initialization
     void Start () {
-        gM = GameObject.Find("GameMaster").GetComponent<GameMaster>();
+        //Initialize variable
         indexEmpty = new List<int>();
-        indexEmpty = gM.GetInstancesList();
         index = 0;
+
+        //Retrieve game master object
+        gM = GameObject.Find("GameMaster").GetComponent<GameMaster>();
+
+        //Retrieve list of clickable letters        
+        indexEmpty = gM.GetInstancesList();
     }
 	
 	// Update is called once per frame

@@ -26,15 +26,18 @@ public class GameMaster : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        //Initialize variables
         letters = new List<char>();
         stock = new List<int>();
         emptyBoxInstancesId = new List<int>();
         index = 0;
         answer = "";
 
+        // Fill question space
         GameObject emptyQuestion = GameObject.Find("Question");
         emptyQuestion.GetComponent<TextMesh>().text = question;
 
+        // Ganerate empty boxes with the word length
         for (int x = 0; x < theWord.Length; x++)
         {
             if (theWord[x] != ' ')
@@ -46,33 +49,48 @@ public class GameMaster : MonoBehaviour {
             }
             posXEmpty += 1F;
         }
+
+        //Set number of tries
         nbTry = 0;
+
+        // generate letters of the word
         GenerateLetters();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Check if the game ended and if the number of letters clicked is the same as the word
         if (!gameEnd && index == theWord.Replace(" ", "").Length)
         {
+            //Check both value of the answer and the word
             if (answer == theWord.Replace(" ", ""))
             {
                 gameEnd = true;
+
+                //generate a mark
                 GameManager.NoteMeliMelo = 20 - Mathf.RoundToInt(nbTry / 1.25F);
                 GameManager.NumberNote += 1;
+
+                //Remvove the retry button
                 Destroy(onlyOne.gameObject);
             }
             else
             {
+                //regenerate clickable letters
                 ResetLetters();
             }
         }
     }
 
+    /// <summary>
+    /// Generate letters in random position from the response word
+    /// </summary>
     private void GenerateLetters()
     {
         int random = 0;
         float tmp = posXLetter;
+
         for (int x = 0; x < theWord.Length; x++)
         {
             if (theWord[x] != ' ')
@@ -94,43 +112,9 @@ public class GameMaster : MonoBehaviour {
         quit.onClick.AddListener(ResetLetters);
     }
 
-    public void incIndex()
-    {
-        index++;
-    }
-
-    public List<int> GetInstancesList()
-    {
-        return emptyBoxInstancesId;
-    }
-
-    private static void PrintS(char s)
-    {
-        Debug.Log(s);
-    }
-
-    private bool CheckNumber(int number)
-    {
-        if (stock.Contains(number))
-            return true;
-        else
-        {
-            stock.Add(number);
-            return false;
-        }
-    }
-
-    public void addCharToAnswer(string s)
-    {
-        answer += s;
-    }
-
-
-    void Exit()
-    {
-        Debug.Log(nbTry);
-    }
-
+    /// <summary>
+    /// Reset all letters in the response, destroy all clicable letters left and regenerate them.
+    /// </summary>
     public void ResetLetters()
     {
         nbTry++;
@@ -149,5 +133,47 @@ public class GameMaster : MonoBehaviour {
             Destroy(usable[i]);
         }
         GenerateLetters();
+    }
+
+    /// <summary>
+    /// Check if a number is already in the stock list. If not, add it.
+    /// </summary>
+    /// <param name="number">number to check</param>
+    /// <returns>tru if the number exists, false otherwise.</returns>
+    private bool CheckNumber(int number)
+    {
+        if (stock.Contains(number))
+            return true;
+        else
+        {
+            stock.Add(number);
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Increment the number of clicked letters
+    /// </summary>
+    public void incIndex()
+    {
+        index++;
+    }
+
+    /// <summary>
+    /// retreive a list of id of all instances of clickable letters left
+    /// </summary>
+    /// <returns>List of id</returns>
+    public List<int> GetInstancesList()
+    {
+        return emptyBoxInstancesId;
+    }
+
+    /// <summary>
+    /// Add a char (clicked letter) to the answer string
+    /// </summary>
+    /// <param name="s">The char clicked</param>
+    public void addCharToAnswer(string s)
+    {
+        answer += s;
     }
 }
