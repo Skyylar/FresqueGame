@@ -15,13 +15,13 @@ public class FriseMaster : MonoBehaviour {
 
     [DllImport("__Internal")]
     private static extern void SendScore(int score);
-    
+
 
 	// Use this for initialization
 	void Start () {
-		
+
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
         disableGames();
@@ -34,7 +34,7 @@ public class FriseMaster : MonoBehaviour {
         {
             score = (int)(GameManager.NoteFindObject + GameManager.NoteMeliMelo + GameManager.NotePuzzle + GameManager.NoteQuiz) / GameManager.NumberNote;
             GameObject.Find("NoteObject").GetComponent<TextMesh>().text = score.ToString() + "/20";
-        } else 
+        } else
         {
             GameObject.Find("NoteObject").GetComponent<TextMesh>().text = "";
         }
@@ -46,21 +46,25 @@ public class FriseMaster : MonoBehaviour {
         {
             disableFind = true;
             disableClick("Prehistoire");
+            enableStar(1);
         }
         if (GameManager.NoteQuiz != 0 && !disableQuizz)
         {
             disableQuizz = true;
             disableClick("TempsModernes");
+            enableStar(4);
         }
         if (GameManager.NotePuzzle != 0 && !disablePuzzle)
         {
             disablePuzzle = true;
             disableClick("Antiquite");
+            enableStar(2);
         }
         if (GameManager.NoteMeliMelo != 0 && !disableMeli)
         {
             disableMeli = true;
             disableClick("MoyenAge");
+            enableStar(3);
         }
     }
 
@@ -68,6 +72,14 @@ public class FriseMaster : MonoBehaviour {
     {
         GameObject.Find(name).GetComponent<BoxCollider>().enabled = false;
         GameObject.Find(name).GetComponent<ClickOnBox>().enabled = false;
+    }
+
+    private void enableStar(int i)
+    {
+        GameObject star = GameObject.Find("star" + i.ToString());
+        Color tmp = star.GetComponent<SpriteRenderer>().color;
+        tmp.a = 1f;
+        star.GetComponent<SpriteRenderer>().color = tmp;
     }
 
 
