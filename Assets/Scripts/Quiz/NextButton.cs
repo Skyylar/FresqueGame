@@ -9,18 +9,17 @@ public class NextButton : MonoBehaviour {
 
     public Transform nextObj;
 
-    // Use this for initialization
     void Start () {
 		
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		
 	}
 
     void OnMouseDown()
     {
+        // Au clique sur le bouton suivant remet a 0 les variables
         TextControl.nextActivator = 0;
         TextControl.randQuestion = -1;
         TextControl.isClicked = 0;

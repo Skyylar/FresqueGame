@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Text2 : MonoBehaviour
 {
-
+    // Liste contenant les reponses de la ligne 2
     List<string> secondChoice = new List<string>() { "Léonard de Vinci", "1790", "1486", "Belgique", "Isaac Newton" };
 
-    // Use this for initialization
     void Start()
     {
-        //GetComponent<TextMesh>().text = secondChoice[0];
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Affiche la reponse en fonction de la question
         if (TextControl.randQuestion > -1)
         {
             GetComponent<TextMesh>().text = secondChoice[TextControl.randQuestion];
@@ -24,6 +24,7 @@ public class Text2 : MonoBehaviour
 
     void OnMouseDown()
     {
+        // Si une reponse a ete selectionné empeche de recliquer sur une reponse
         if (TextControl.isClicked == 0)
         {
             TextControl.selectedAnswer = gameObject.name;
