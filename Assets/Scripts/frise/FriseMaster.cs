@@ -10,6 +10,7 @@ public class FriseMaster : MonoBehaviour {
     private bool disableQuizz = false;
     private bool disablePuzzle = false;
     private bool disableMeli = false;
+    private int score = 0;
 
     [DllImport("__Internal")]
     private static extern void SendScore(int score);
@@ -23,8 +24,20 @@ public class FriseMaster : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         disableGames();
+        setNote();
 	}
 
+    private void setNote()
+    {
+        if (GameManager.NumberNote > 0)
+        {
+            score = (int)(GameManager.NoteFindObject + GameManager.NoteMeliMelo + GameManager.NotePuzzle + GameManager.NoteQuiz) / GameManager.NumberNote;
+            GameObject.Find("NoteObject").GetComponent<TextMesh>().text = score.ToString() + "/20";
+        } else 
+        {
+            GameObject.Find("NoteObject").GetComponent<TextMesh>().text = "";
+        }
+    }
 
     private void disableGames()
     {
@@ -59,14 +72,6 @@ public class FriseMaster : MonoBehaviour {
 
     public void sendScore()
     {
-        int score = 0;
-        if (GameManager.NumberNote != 0) 
-        {
-            score = (int)(GameManager.NoteFindObject + GameManager.NoteMeliMelo + GameManager.NotePuzzle + GameManager.NoteQuiz) / GameManager.NumberNote;   
-        }
-        Debug.Log(GameManager.NumberNote);
-        Debug.Log(score);
-
         SendScore(score);
     }
 }
