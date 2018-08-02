@@ -11,21 +11,28 @@ public class FriseMaster : MonoBehaviour {
     private bool disableQuizz = false;
     private bool disablePuzzle = false;
     private bool disableMeli = false;
+    public GameObject ExitButton;
     private int score = 0;
 
     [DllImport("__Internal")]
     private static extern void SendScore(int score);
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
+        //GameObject.Find("ButtonExit").GetComponent<Button>().interactable = false;
+    }
 
-	}
-
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update () {
         disableGames();
         setNote();
+        if (GameManager.NumberNote == 4)
+        {
+            SendScore(score);
+            ExitButton.SetActive(true);
+        }
 	}
 
     private void setNote()
@@ -83,9 +90,5 @@ public class FriseMaster : MonoBehaviour {
     }
 
 
-    public void sendScore()
-    {
-        SendScore(score);
-        SceneManager.LoadScene("StartScene", LoadSceneMode.Single);
-    }
+    public void sendScore() => SceneManager.LoadScene("StartScene", LoadSceneMode.Single);
 }

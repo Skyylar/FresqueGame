@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465934, g: 0.49642956, b: 0.5748249, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.496413, b: 0.5748175, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -687,7 +687,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Send Score
+  m_Text: Quitter
 --- !u!222 &383642021
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -773,12 +773,12 @@ GameObject:
   - component: {fileID: 893991681}
   - component: {fileID: 893991680}
   m_Layer: 5
-  m_Name: Button
+  m_Name: ButtonExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &893991679
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1259,6 +1259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b467eec8d8f94be090846f7622ea73b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ExitButton: {fileID: 893991678}
 --- !u!4 &1295594862
 Transform:
   m_ObjectHideFlags: 0
