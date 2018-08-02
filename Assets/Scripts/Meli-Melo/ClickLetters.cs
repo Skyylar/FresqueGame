@@ -36,8 +36,8 @@ public class ClickLetters : MonoBehaviour {
         index = gM.index;
         string currentLetter = letters.transform.GetChild(0).GetComponent<TextMesh>().text;
         GameObject.Find(indexEmpty[index].ToString()).transform.GetChild(0).GetComponent<TextMesh>().text = currentLetter;
-        gM.incIndex();
-        gM.addCharToAnswer(currentLetter);
+        gM.IncIndex();
+        gM.AddCharToAnswer(currentLetter);
         Destroy(letters);
     }
 }

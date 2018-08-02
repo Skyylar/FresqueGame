@@ -6,22 +6,48 @@ using UnityEngine.UI;
 
 public class GameMaster : MonoBehaviour {
 
+    // Fillable boxes
     public Transform emptyboxPrefab;
+
+    // Letters boxes
     public Transform letterBox;
-    private string theWord = "imprimerie";
+
+    // Positions of boxes
     private float posXEmpty = -4.5F;
     private float posXLetter = -4.5F;
-    public int index;
+
+
+
+    // Question
     private string question = "Qu'inventa Gutemberg pour copier les livres ?";
+    
+    // Word to find
+    private string theWord = "imprimerie";
+
+    // Answer
+    private string answer;
+
+    // Number of letters in answer
+    public int index;
+
+    // Retry button
     public Button onlyOne;
 
-    private string answer;
+
+    // Letters avaible
     private List<char> letters;
+
+    // List of int used to display randomly letters
     private List<int> stock;
+
+    // List of id of empty boxes
     private List<int> emptyBoxInstancesId;
-    private GameObject[] usable;
+
+
+    // Number of tries
     private int nbTry;
-    private int score;
+
+    // Game ended or not
     private bool gameEnd = false;
 
     // Use this for initialization
@@ -154,7 +180,7 @@ public class GameMaster : MonoBehaviour {
     /// <summary>
     /// Increment the number of clicked letters
     /// </summary>
-    public void incIndex()
+    public void IncIndex()
     {
         index++;
     }
@@ -172,7 +198,7 @@ public class GameMaster : MonoBehaviour {
     /// Add a char (clicked letter) to the answer string
     /// </summary>
     /// <param name="s">The char clicked</param>
-    public void addCharToAnswer(string s)
+    public void AddCharToAnswer(string s)
     {
         answer += s;
     }
